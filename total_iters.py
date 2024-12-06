@@ -1,22 +1,3 @@
-# import numpy as np
-
-# max_iters = 500
-# eta = 3
-
-# s_max = int(np.log(max_iters) / np.log(eta))
-# print(f"s_max: {s_max}")
-
-# total_iterations = 0
-# for s in reversed(range(s_max + 1)):
-#     n = int(np.ceil((s_max + 1) * (eta ** s) / (s + 1)))
-#     r = int(max_iters * (eta ** (-s)))
-#     for i in range(s+1):
-#         n_i = int(n * (eta ** (-i)))
-#         r_i = int(r * (eta ** i))
-#         total_iterations += n * r
-
-# print(f"Total iterations: {total_iterations}")
-
 import numpy as np
 from math import ceil, log
 
@@ -44,7 +25,6 @@ def calculate_hyperband_iterations(max_iter, eta):
         
         # For each round in the bracket
         for i in range(s + 1):
-            # Calculate ni and ri for this round
             ni = int(n * (eta ** (-i)))
             prev_ri = ri
             ri = int(r * (eta ** i))
@@ -74,6 +54,6 @@ def calculate_hyperband_iterations(max_iter, eta):
     return total_iters
 
 # Example usage
-max_iter = 735  # 3^5
+max_iter = 735 
 eta = 3
 total = calculate_hyperband_iterations(max_iter, eta)
